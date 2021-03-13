@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import Navbar from './component/navbar/navbar.component';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import AddItem from './component/addItem/addItem.component';
+import React, { Component } from 'react'
+
+export class App extends Component {
+  constructor(propos){
+    super(propos)
+    this.state = {
+      items: [
+        {
+          id:1,
+          course : "achat de la nourriture"
+        },
+        {
+          id:2,
+          course: "achat de la machine"
+        }
+      ]
+    }
+  }
+  render() {
+    
+    return (
+      <div className="App">
+        <Router>
+          <Navbar items={this.state.items} />
+            <Route exact path="/add" component={AddItem}/>
+        </Router>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default App
+

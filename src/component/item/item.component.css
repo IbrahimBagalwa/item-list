@@ -1,0 +1,25 @@
+.items{
+    border: 1px black solid; 
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-left: 30%;
+    margin-right: 30%;
+    box-shadow: 8px 8px 2px slategray;
+    width: 60%;
+}
+.btn{
+    background: red;
+    border: none;
+    margin-left: 80%;
+    border-radius: 100%;
+    color: white;
+    cursor: pointer;
+}
+.titleItem{
+    margin-left: 10px;
+}
+.title{
+    text-align: center;
+    margin-top: 10px;
+}
