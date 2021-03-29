@@ -1,40 +1,24 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import AddItem from '../addItem/addItem.component';
-import Items from '../item/item.component';
-import './navbar.component.css'
+import React, {useContext} from 'react'
+import {ItemContext} from '../context/context.component'
 
-export class Navbar extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            count:0
-        }
-    }
-    compte = this.props.items
-    render() {
-        return (
-            <div>
-                <ul className="nav-bar">
-                    <ul className="nav-right">
-                        <li><Link style={{textDecoration:"none",color:"black"}} to="/">Home</Link></li>
-                        <li><Link style={{textDecoration:"none",color:"black"}} to="/add">AddItem</Link></li> 
-                        <li><Link style={{textDecoration:"none",color:"black"}} to="#">About</Link></li>
-                    </ul>
-                    <ul className="nav_left">
-                    <li className="nom"><Link style={{textDecoration:"none",color:"teal"}} to="/">Ibrahim Bagalwa</Link> 
-                    <p>{this.state.count + this.compte.length}</p></li> 
-                    </ul>
-                    
-                </ul>
-                <div>
-                <h4 className="title">La liste de tout nos achats</h4>
-                    <Items items={this.props.items}/>
-                    
-                </div>
+function Navbar() {
+    const [item] = useContext(ItemContext)
+    return (
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Item List</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                
+            </ul>
+            <div className="my-2 my-lg-0 mf-4">
+                <p className="font-weight-bold">Abrah - {item.length}</p>
             </div>
-        )
-    }
+        </div>
+       </nav>
+    )
 }
 
 export default Navbar

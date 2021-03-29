@@ -1,33 +1,40 @@
+import React,{useContext} from 'react'
+import { ItemContext } from '../context/context.component'
 
-import './addItem.component.css'
-import React, { Component } from 'react'
-
-export class AddItem extends Component {
-    state = {
-        course:''
-    }
-    addItem = (course)=>{
-        const new_items = {
-      id: this.props.state.items.length +1,
-      course:course
-    }
-    this.setState({items:[...this.props.state.items, new_items]})
-    }
-    onSubmit = (e)=>{
+function AddItem() {
+    const [item,setItem] = useContext(ItemContext)
+    const addItem = e =>{
         e.preventDefault()
-        this.addItem(this.state.course)
+        const new_item = {
+            id: item.length + 1,
+            name:e.target.name.value, 
+            prix:parseFloat(e.target.prix.value),
+            quantity:parseInt(e.target.quantity.value) 
+
+        }
+        setItem (preItem=>[...item,new_item]);
+        e.target.reset()
     }
-    onChange = (e)=>{this.setState({[e.target.name]:e.target.value})}
-    render() {
-        return (
-            <div className="container">
-                <form className="input-text" onSubmit={this.onSubmit}>
-                    <input className="input" name="course" type="text" placeholder="ajouter vos courses ici" onChange={this.onChange} value={this.state.value}/>
-                    <input className="btn-add" type="submit" value="ajouter Item"/>
-                </form>
-            </div>
-        )
-    }
+
+    return (
+        <div>
+            <h5 className="text-center">Add Item</h5>
+            <form onSubmit={addItem}>
+                <div className="form-group">
+                    <input className="form-control" type="text" name="name" placeholder="nom d'article..." id=""/>
+                </div>
+                <div className="form-group">
+                    <input className="form-control" type="number" name="prix" placeholder="prix d'article..." id=""/>
+                </div>
+                <div className="form-group">
+                    <input className="form-control" type="number" name="quantity" placeholder="quantity d'article..." id=""/>
+                </div>
+                <div className="button-control">
+                    <button type="submit" className="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    )
 }
 
 export default AddItem
